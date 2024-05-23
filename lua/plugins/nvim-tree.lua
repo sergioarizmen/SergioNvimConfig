@@ -8,6 +8,7 @@
 -- Keybindings are defined in `core/keymaps.lua`:
 -- https://github.com/kyazdani42/nvim-tree.lua#keybindings
 
+-- Check if the plugin is properly installed.
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
     return

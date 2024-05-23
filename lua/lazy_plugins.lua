@@ -1,23 +1,29 @@
 -- Define the plugins and the options required.
 return {
+    -- Adds a visual theme manager.
+    -- VISUAL
     {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
     },
+
+    -- Adds web icons support.
+    -- VISUAL
     {
         "nvim-tree/nvim-web-devicons",
     },
+
+    -- Adds startup display.
+    -- VISUAL, QUICKSTART
     {
         "goolord/alpha-nvim",
         event = "VimEnter",
         config = function() require("plugins.alpha-nvim") end
     },
-    {
-        "freddiehaddad/feline.nvim",
-        opts = {},
-        config = function() require("plugins.feline") end
-    },
+
+    -- Adds a directory search tree.
+    -- VISUAL, QUICKSTART
     {
 		"nvim-tree/nvim-tree.lua",
         version = "*",
@@ -27,12 +33,27 @@ return {
         },
         config = function() require("plugins.nvim-tree") end
     },
+
+    -- Improves the standard vim status line (at the bottom)
+    --  and adds a window header.
+    -- VISUAL
+    {
+        "freddiehaddad/feline.nvim",
+        opts = {},
+        config = function() require("plugins.feline") end
+    },
+
+    -- Adds a parser generator tool and an incremental parsing library.
+    -- CODE
     {
         "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPre", "BufNewFile" },
+        build = ":TSUpdate",
         cmd = { "TSInstallInfo", "TSInstall" },
         config = function() require("plugins.nvim-treesitter") end
     },
+
+    -- Adds indentation visual indicators.
+    -- VISUAL, CODE
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
@@ -41,25 +62,22 @@ return {
         },
         config = function()  require("plugins.indent-blankline") end
     },
+    -- Adds fast comment keymaps.
+    -- CODE
     {
         "numToStr/Comment.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        config = function ()
-            local status_ok, comment = pcall(require, "Comment")
-
-            if not status_ok then
-                return
-            end
-
-            comment.setup()
-        end
+        lazy = false,
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function () require("plugins.comment") end
     },
+
+    -- Improves search functions and search motions.
+    -- CODE
     {
         "folke/flash.nvim",
         event = "VeryLazy",
-        -- @type Flash.Config
-        opts = {},
-        -- stylua: ignore
         keys = {
             { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
             -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
@@ -68,39 +86,24 @@ return {
             -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
     },
+
+    -- Adds an advanced search window.
+    -- CODE
     {
         "nvim-telescope/telescope.nvim",
         event = "VimEnter",
         dependencies = {
             "nvim-lua/plenary.nvim"
         },
-        config = function ()
-            local status_ok, telescope = pcall(require, "telescope")
-
-            if not status_ok then
-                return
-            end
-
-            telescope.setup()
-            local builtin = require("telescope.builtin")
-
-            vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-            vim.keymap.set("n", "<leader>r", builtin.oldfiles, {})
-            vim.keymap.set("n", "<leader>gr", builtin.live_grep, {})
-            vim.keymap.set("n", "<leader>fj", builtin.help_tags, {})
-        end
+        config = function () require("plugins.telescope") end
     },
+
+    -- Adds Neovim development support.
+    -- CODE
     {
         'folke/neodev.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
+        lspconfig = true,
         config = function()
-            local neodev_status_ok, neodev = pcall(require, 'neodev')
-
-            if not neodev_status_ok then
-                return
-            end
-
-            neodev.setup()
         end
     },
     {

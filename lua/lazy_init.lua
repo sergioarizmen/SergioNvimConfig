@@ -14,7 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Define the plugins and the options required.
-local lazy_plugins = require("plugins")
+local lazy_plugins = require("lazy_plugins")
 local lazy_options = {}
 
 -- Start requiring setup.
