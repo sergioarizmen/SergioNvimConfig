@@ -14,5 +14,5 @@ end
 -- Enable basic setup.
 feline.setup()
 
--- Enable window top bar.
+-- Enable window header.
 feline.winbar.setup()

@@ -14,33 +14,17 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
 
-    -- Adds startup display.
-    -- VISUAL, QUICKSTART
+    -- Adds Neovim's default lsp configurations.
+    -- CODE
     {
-        "goolord/alpha-nvim",
-        event = "VimEnter",
-        config = function() require("plugins.alpha-nvim") end
+        "neovim/nvim-lspconfig",
     },
 
-    -- Adds a directory search tree.
-    -- VISUAL, QUICKSTART
+    -- Adds startup time measurements and quick view.
+    -- NEOVIM DEVELOPMENT
     {
-		"nvim-tree/nvim-tree.lua",
-        version = "*",
-        lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function() require("plugins.nvim-tree") end
-    },
-
-    -- Improves the standard vim status line (at the bottom)
-    --  and adds a window header.
-    -- VISUAL
-    {
-        "freddiehaddad/feline.nvim",
-        opts = {},
-        config = function() require("plugins.feline") end
+        "dstein64/vim-startuptime",
+        cmd = "StartupTime",
     },
 
     -- Adds a parser generator tool and an incremental parsing library.
@@ -52,39 +36,135 @@ return {
         config = function() require("plugins.nvim-treesitter") end
     },
 
+    -- Allows integration of LSP servers, linters, and formatters.
+    -- CODE
+    {
+        "williamboman/mason.nvim",
+        dependencies = {
+            -- Adds Neovim's default lsp configurations.
+            -- CODE
+            "neovim/nvim-lspconfig",
+
+            -- Bridge between mason.nvim and lspconfig.
+            -- CODE
+            "williamboman/mason-lspconfig.nvim",
+        },
+        build = function() pcall(vim.cmd, "MasonUpdate") end,
+        config = function() require("plugins.mason") end
+    },
+
+    -- Adds a completion engine.
+    -- CODE
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+            -- Adds Neovim's default lsp configurations.
+            -- CODE
+            "neovim/nvim-lspconfig",
+
+            -- Bridge between nvim-cmp and lspconfig.
+            -- CODE
+            "hrsh7th/cmp-nvim-lsp",
+
+            -- Adds snipet functionality.
+            -- CODE
+            "L3MON4D3/LuaSnip",
+        },
+    },
+
+    -- Adds functions to setup Neovim's LSP.
+    -- CODE
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        cmd = "Mason",
+        branch = "v3.x",
+        dependencies = {
+            -- Adds Neovim's default lsp configurations.
+            -- CODE
+            "neovim/nvim-lspconfig",
+
+            -- Bridge between nvim-cmp and lspconfig.
+            -- CODE
+            "hrsh7th/cmp-nvim-lsp",
+
+            -- Adds a completion engine.
+            -- CODE
+            "hrsh7th/nvim-cmp",
+
+            -- Adds snipet functionality.
+            -- CODE
+            "L3MON4D3/LuaSnip",
+
+            -- Adds a status line showing the current code context.
+            -- VISUAL
+            "SmiteshP/nvim-navic",
+        },
+        config = function() require("plugins.lsp-zero") end
+    },
+
+    -- Adds luasnip completion source for nvim-cmp.
+    -- CODE
+    {
+        "saadparwaiz1/cmp_luasnip"
+    },
+
+    -- Adds a snippet collection.
+    -- CODE
+    {
+        "rafamadriz/friendly-snippets"
+    },
+
+    -- Adds Neovim development support.
+    -- NEOVIM DEVELOPMENT, CODE
+    {
+        "folke/neodev.nvim",
+        lspconfig = true,
+        dependencies = {
+            "neovim/nvim-lspconfig",
+        },
+        config = function() require("plugins.neodev") end
+    },
+
+    -- Adds startup display.
+    -- VISUAL, QUICK START
+    {
+        "goolord/alpha-nvim",
+        event = "VimEnter",
+        config = function() require("plugins.alpha-nvim") end
+    },
+
     -- Adds indentation visual indicators.
     -- VISUAL, CODE
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
+        event = "VimEnter",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
         config = function()  require("plugins.indent-blankline") end
     },
-    -- Adds fast comment keymaps.
-    -- CODE
+
+    -- Adds a directory search tree.
+    -- VISUAL, QUICK START
     {
-        "numToStr/Comment.nvim",
-        lazy = false,
+		"nvim-tree/nvim-tree.lua",
+        version = "*",
+        event = "VimEnter",
         dependencies = {
-            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
-        config = function () require("plugins.comment") end
+        config = function() require("plugins.nvim-tree") end
     },
 
-    -- Improves search functions and search motions.
-    -- CODE
+    -- Improves the standard vim status line (at the bottom)
+    --  and adds a window header.
+    -- VISUAL
     {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        keys = {
-            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-            -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-        },
+        "freddiehaddad/feline.nvim",
+        event = "VimEnter",
+        opts = {},
+        config = function() require("plugins.feline") end
     },
 
     -- Adds an advanced search window.
@@ -98,205 +178,120 @@ return {
         config = function () require("plugins.telescope") end
     },
 
-    -- Adds Neovim development support.
+    -- Adds special task comments" highlighting and search.
     -- CODE
     {
-        'folke/neodev.nvim',
-        lspconfig = true,
-        config = function()
-        end
-    },
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        cmd = 'Mason',
-        branch = 'v2.x',
+        "folke/todo-comments.nvim",
+        event = "VimEnter",
         dependencies = {
-            { 'neovim/nvim-lspconfig' },
-            {
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end
-            },
-            { 'williamboman/mason-lspconfig.nvim', },
-
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'SmiteshP/nvim-navic' }
-        },
-        config = function()
-
-            local lsp = require('lsp-zero').preset({})
-
-            local navic = require('nvim-navic')
-
-            lsp.on_attach(function(client, bufnr)
-                lsp.default_keymaps({buffer = bufnr})
-                if client.server_capabilities.documentSymbolProvider then
-                    navic.attach(client, bufnr)
-                end
-            end)
-
-            require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-            lsp.ensure_installed({
-                'pyright',
-                'lua_ls',
-                'gopls',
-                'clangd'
-            })
-
-            lsp.setup()
-
-            local cmp = require('cmp')
-            -- local cmp_action = require('lsp-zero').cmp_action()
-
-            require('luasnip.loaders.from_vscode').lazy_load()
-
-            cmp.setup({
-                preselect = cmp.PreselectMode.None,
-                sources = {
-                    { name = 'nvim_lsp' },
-                    { name = 'luasnip' },
-                },
-                mapping = {
-                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                snippet = {
-                    expand = function(args)
-                        require('luasnip').lsp_expand(args.body)
-                    end
-                }
-            })
-
-        end
-    },
-    { 'saadparwaiz1/cmp_luasnip' },
-    { 'rafamadriz/friendly-snippets' },
-    {
-        'folke/todo-comments.nvim',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
+            "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim",
         },
-        event = { 'BufReadPre', 'BufNewFile' },
+        config = function() require("plugins.todo-comments") end
     },
+
+    -- Adds a vim command to execute git actions from within Neovim.
+    -- CODE
     {
-        'tpope/vim-surround',
-        event = { 'BufReadPre', 'BufNewFile' },
+        "tpope/vim-fugitive",
+        event = "VimEnter",
     },
+
+    -- Adds markdown files" preview functionality.
+    -- VISUAL, CODE
     {
-        'dstein64/vim-startuptime',
-        cmd = 'StartupTime',
+        "iamcco/markdown-preview.nvim",
+        event = "VimEnter",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end
     },
+
+    -- Adds a window to edit files as code.
+    -- CODE, VISUAL
     {
-        'iamcco/markdown-preview.nvim',
-        init = function()
-            vim.g.mkdp_filetypes = { 'markdown' }
-        end,
-        config = function()
-            vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreviewToggle', { desc = 'Markdown Preview' })
-        end,
+        "stevearc/oil.nvim",
+        event = "VimEnter",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function() require("plugins.oil") end
     },
+
+    -- Adds visual indicators for who contributed with which line of code.
+    -- VISUAL, CODE
     {
-        'ThePrimeagen/harpoon',
-        event = 'VimEnter',
-        config = function ()
-
-            local harpoon_status_ok, harpoon = pcall(require, 'harpoon')
-            if not harpoon_status_ok then
-                return
-            end
-
-            local harpoon_mark_status_ok, harpoon_mark = pcall(require, 'harpoon.mark')
-            if not harpoon_mark_status_ok then
-                return
-            end
-
-            local harpoon_ui_status_ok, harpoon_ui = pcall(require, 'harpoon.ui')
-            if not harpoon_ui_status_ok then
-                return
-            end
-
-            local opts = { noremap = true, silent = true }
-            local keymap = vim.keymap
-
-            harpoon.setup({
-                menu = {
-                    width = 60,
-                },
-            })
-
-            keymap.set('n', '<leader>h', harpoon_mark.add_file, opts)
-            keymap.set('n', '<C-e>', harpoon_ui.toggle_quick_menu, opts)
-
-            keymap.set('n', '<leader>1', function() harpoon_ui.nav_file(1) end, opts)
-            keymap.set('n', '<leader>2', function() harpoon_ui.nav_file(2) end, opts)
-            keymap.set('n', '<leader>3', function() harpoon_ui.nav_file(3) end, opts)
-            keymap.set('n', '<leader>4', function() harpoon_ui.nav_file(4) end, opts)
-            keymap.set('n', '<leader>5', function() harpoon_ui.nav_file(5) end, opts)
-            keymap.set('n', '<leader>6', function() harpoon_ui.nav_file(6) end, opts)
-            keymap.set('n', '<leader>7', function() harpoon_ui.nav_file(7) end, opts)
-            keymap.set('n', '<leader>8', function() harpoon_ui.nav_file(8) end, opts)
-            keymap.set('n', '<leader>9', function() harpoon_ui.nav_file(9) end, opts)
-
-        end,
+        "lewis6991/gitsigns.nvim",
+        event = "VimEnter",
+        config = function() require("plugins.gitsigns") end
     },
+
+    -- Adds quick file traversal keybindings.
+    -- CODE
     {
-        'stevearc/oil.nvim',
-        event = 'VeryLazy',
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-        config = function ()
-            local ok, oil = pcall(require, 'oil')
-
-            if not ok then
-                return
-            end
-
-            oil.setup({
-                vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" }),
-
-                keymaps = {
-                    ["g?"] = "actions.show_help",
-                    ["<CR>"] = "actions.select",
-                    ["<C-s>"] = "actions.select_vsplit",
-                    -- ["<C-h>"] = "actions.select_split",
-                    -- ["<C-t>"] = "actions.select_tab",
-                    -- ["<C-p>"] = "actions.preview",
-                    ["<C-c>"] = "actions.close",
-                    -- ["<C-l>"] = "actions.refresh",
-                    ["-"] = "actions.parent",
-                    ["_"] = "actions.open_cwd",
-                    ["`"] = "actions.cd",
-                    ["~"] = "actions.tcd",
-                    ["g."] = "actions.toggle_hidden",
-                },
-                -- Set to false to disable all of the above keymaps
-                use_default_keymaps = false,
-            })
-        end,
+        "ThePrimeagen/harpoon",
+        event = "VeryLazy",
+        config = function() require("plugins.harpoon") end
     },
+
+    -- Adds fast comment key maps.
+    -- CODE
     {
-        'lewis6991/gitsigns.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        config = function ()
-            local status_ok, gitsigns = pcall(require, 'gitsigns')
-
-            if not status_ok then
-                return
-            end
-
-            gitsigns.setup({})
-        end,
+        "numToStr/Comment.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function () require("plugins.comment") end
     },
+
+    -- Adds automatic parenthesis, quotes, and tag surrounding key maps.
+    -- CODE
     {
-        'tpope/vim-fugitive',
-        event = 'VimEnter',
+        "tpope/vim-surround",
+        event = "VeryLazy",
+        config = function() require("plugins.vim-surround") end
+    },
+
+    -- Improves search functions and search motions.
+    -- CODE
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        keys = {
+            -- TODO: Move keybindings to a configuration file.
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
+    },
+
+    -- Adds regex search and replacement.
+    -- CODE, VISUAL
+    {
+        "nvim-pack/nvim-spectre",
+        event = "VeryLazy",
+        config = function() require("plugins.nvim-spectre") end
+    },
+
+    -- Adds a formatting command.
+    -- CODE
+    {
+        'mhartington/formatter.nvim',
+        event = "VeryLazy",
+        config = function() require("plugins.formatter") end
+    },
+
+    -- Adds a window suggesting key commands.
+    -- VISUAL
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        config = function() require("which-key").setup() end
     },
 }

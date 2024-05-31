@@ -11,4 +11,5 @@ if not status_ok then
     return
 end
 
+-- Setup comment.
 comment.setup()

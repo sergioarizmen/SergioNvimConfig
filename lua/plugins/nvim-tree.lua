@@ -1,12 +1,9 @@
 -----------------------------------------------------------
--- File manager configuration file
+-- Nvim-tree plugin configuration file.
 -----------------------------------------------------------
-
+--
 -- Plugin: nvim-tree
 -- url: https://github.com/kyazdani42/nvim-tree.lua
-
--- Keybindings are defined in `core/keymaps.lua`:
--- https://github.com/kyazdani42/nvim-tree.lua#keybindings
 
 -- Check if the plugin is properly installed.
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
@@ -16,6 +13,7 @@ end
 
 -- Call tree setup.
 nvim_tree.setup {
+    hijack_cursor = true,
     auto_reload_on_write = true,
     create_in_closed_folder = false,
     hijack_netrw = true,
@@ -24,8 +22,6 @@ nvim_tree.setup {
     open_on_tab = true,
     sort_by = "name",
     reload_on_bufenter = false,
-    respect_buf_cwd = false,
-    update_cwd = true,
     sort = {
         sorter = "case_sensitive",
     },
@@ -170,39 +166,5 @@ nvim_tree.setup {
     },
 }
 
-
-
--- Define the configuration dictionary for nvim-tree.
-nvim_tree_configuration = {
-    sync_root_with_cwd = true,
-    sort = {
-        sorter = "case_sensitive",
-    },
-    view = {
-        width = 30,
-    },
-    renderer = {
-        group_empty = true,
-        indent_markers = {
-            enable = true,
-            inline_arrows = true,
-            icons = {
-                corner = "└",
-                edge = "│",
-                item = "│",
-                bottom = "─",
-                none = " ",
-            },
-        },
-    },
-    filters = {
-        dotfiles = true,
-    },
-    tab = {
-        sync = {
-            open = true,
-            close = true,
-            ignore = {},
-        },
-    },
-}
+-- Add a tree view toggle key map.
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })

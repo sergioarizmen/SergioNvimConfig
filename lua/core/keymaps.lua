@@ -47,14 +47,3 @@ map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 -- Terminal mappings.
 map('n', '<C-t>', ':Term<CR>', { noremap = true })  -- open.
 map('t', '<Esc>', '<C-\\><C-n>')                    -- exit.
-
--- Alpha.
-vim.keymap.set('n', '<leader>a', ':Alpha<CR>')      -- open.
-
--- NvimTree.
-map('n', '<C-n>', ':NvimTreeToggle<CR>')            -- open/close.
-map('n', '<leader>r', ':NvimTreeRefresh<CR>')       -- refresh.
-map('n', '<leader>f', ':NvimTreeFindFile<CR>')      -- search file.
-
--- Tagbar.
-map('n', '<leader>z', ':TagbarToggle<CR>')          -- open/close.
