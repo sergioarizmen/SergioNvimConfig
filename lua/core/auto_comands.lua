@@ -8,6 +8,13 @@
 local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 
+-- Startup commands:
+--
+autocmd('VimEnter', {
+  command = ":cd $USERPROFILE"
+})
+
+-- Editor settings:
 -- Highlight on yank
 augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {

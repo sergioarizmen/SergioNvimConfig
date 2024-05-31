@@ -12,6 +12,3 @@ require("core/keymaps")
 
 -- Define colors with the "catpuchin" plugin.
 require("core/colors")
-
--- Define comands run on startup.
-require("core/startup_comands")
