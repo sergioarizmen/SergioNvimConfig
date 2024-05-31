@@ -12,9 +12,12 @@ local opt = vim.opt   -- Set options (global/buffer/windows-scoped).
 -----------------------------------------------------------
 -- General
 -----------------------------------------------------------
-opt.clipboard = 'unnamedplus'         -- Copy/paste to system clipboard.
-opt.swapfile = false                  -- Don't use swapfile.
-opt.completeopt = 'menuone,noinsert,noselect'  -- Autocomplete options.
+opt.clipboard = 'unnamedplus'                   -- Copy/paste to system clipboard.
+opt.swapfile = false                            -- Don't use swapfile.
+opt.completeopt = 'menuone,noinsert,noselect'   -- Autocomplete options.
+opt.spell = true                                -- Activate spell checker.
+opt.timeout = true                              -- Sets a timeout on commands.
+opt.timeoutlen = 1000                           -- Sets the wait time until command timeout.
 
 -----------------------------------------------------------
 -- Neovim UI

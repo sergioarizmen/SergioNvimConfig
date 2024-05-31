@@ -2,7 +2,6 @@
 -- Color schemes configuration file
 -----------------------------------------------------------
 
-
 -- Load nvim color scheme:
 -- Change the "require" values with your color scheme
 -- Available color schemes: onedark, monokai, rose-pine

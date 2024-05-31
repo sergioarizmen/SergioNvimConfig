@@ -2,10 +2,10 @@
 -- Define keymaps of Neovim and installed plugins.
 -----------------------------------------------------------
 
-local function map(mode, lhs, rhs, opts)
+local function map(mode, lhs, rhs)
   local options = { noremap = true, silent = true }
   if opts then
-    options = vim.tbl_extend('force', options, opts)
+    options = vim.tbl_extend('force', options)
   end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
@@ -20,34 +20,29 @@ vim.g.mapleader = ','
 -- Clear search highlighting with <leader> and c.
 map('n', '<leader>c', ':nohl<CR>')
 
+-- Remaps to facilitate editing functions, lists or parameters.
 map('i', '{<CR>', '{<CR>}<C-o>O', {noremap = true})
+map('i', '[<CR>', '[<CR>]<C-o>O', {noremap = true})
+map('i', '(<CR>', '(<CR>)<C-o>O', {noremap = true})
 
 -- Move around splits using Ctrl + {h,j,k,l}.
 map('n', '<C-h>', '<C-w>h')
 map('n', '<C-j>', '<C-w>j')
 map('n', '<C-k>', '<C-w>k')
 map('n', '<C-l>', '<C-w>l')
-map('n', '<C-Return>', '<CR><CR><C-o>k<Tab>')
 
--- Reload configuration without restart nvim.
-map('n', '<leader>r', ':so %<CR>')
+-- Create new line in normal mode.
+map('n', '<CR>', 'o<Esc>')
 
--- Fast saving with <leader> and s.
-map('n', '<leader>s', ':w<CR>')
-map('i', '<leader>s', '<C-c>:w<CR>')
+-- Resize windows.
+map('n', '<C-up>', ':resize -2<cr>')
+map('n', '<C-down>', ':resize +2<cr>')
+map('n', '<C-left>', ':vertical resize -2<cr>')
+map('n', '<C-Right>', ':vertical resize +2<CR>')
 
--- Close all windows and exit from Neovim with <leader> and q.
-map('n', '<leader>q', ':qa!<CR>')
-
--- Open suggestions panel copilot.
-map('n', '<leader>p', ':Copilot panel<CR>')
-
--- Format(prettier).
-map('n', '<leader>l', ':Prettier<CR>')
-
------------------------------------------------------------
--- Applications and Plugins shortcuts.
------------------------------------------------------------
+-- Move lines around.
+map('v', 'J', ":m '>+1<CR>gv=gv", opts)
+map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 
 -- Terminal mappings.
 map('n', '<C-t>', ':Term<CR>', { noremap = true })  -- open.

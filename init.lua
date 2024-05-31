@@ -1,13 +1,13 @@
--- Define NeoVim startup options.
+-- Define Neovim startup options.
 require("core/options")
 
--- Define comands run automatically (on events).
+-- Define commands run automatically (on events).
 require("core/auto_comands")
 
 -- Require Lazy"s setup.
 require("lazy_init")
 
--- Define new keymaps.
+-- Define new key maps.
 require("core/keymaps")
 
 -- Define colors with the "catpuchin" plugin.
