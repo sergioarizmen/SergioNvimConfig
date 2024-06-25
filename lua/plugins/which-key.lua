@@ -12,4 +12,4 @@ if not status_ok then
 end
 
 -- Call setup.
-which_key.setup()
+which_key.setup({})

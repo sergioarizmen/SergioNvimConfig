@@ -36,6 +36,19 @@ return {
         config = function() require("plugins.nvim-treesitter") end
     },
 
+    -- Adds Neovim development support.
+    -- NEOVIM DEVELOPMENT, CODE
+    {
+        "folke/neodev.nvim",
+        lspconfig = true,
+        dependencies = {
+            -- Adds Neovim's default lsp configurations.
+            -- CODE
+            "neovim/nvim-lspconfig",
+        },
+        config = function() require("plugins.neodev") end
+    },
+
     -- Allows integration of LSP servers, linters, and formatters.
     -- CODE
     {
@@ -70,6 +83,7 @@ return {
             -- CODE
             "L3MON4D3/LuaSnip",
         },
+        config = function() require("plugins.nvim-cmp") end
     },
 
     -- Adds functions to setup Neovim's LSP.
@@ -114,17 +128,6 @@ return {
         "rafamadriz/friendly-snippets"
     },
 
-    -- Adds Neovim development support.
-    -- NEOVIM DEVELOPMENT, CODE
-    {
-        "folke/neodev.nvim",
-        lspconfig = true,
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-        config = function() require("plugins.neodev") end
-    },
-
     -- Adds startup display.
     -- VISUAL, QUICK START
     {
@@ -140,6 +143,8 @@ return {
         main = "ibl",
         event = "VimEnter",
         dependencies = {
+            -- Adds a parser generator tool and an incremental parsing library.
+            -- CODE
             "nvim-treesitter/nvim-treesitter",
         },
         config = function()  require("plugins.indent-blankline") end
@@ -152,6 +157,8 @@ return {
         version = "*",
         event = "VimEnter",
         dependencies = {
+            -- Adds web icons support.
+            -- VISUAL
             "nvim-tree/nvim-web-devicons",
         },
         config = function() require("plugins.nvim-tree") end
@@ -173,7 +180,13 @@ return {
         "nvim-telescope/telescope.nvim",
         event = "VimEnter",
         dependencies = {
-            "nvim-lua/plenary.nvim"
+            -- Adds functionality used by some plugins.
+            -- CODE
+            "nvim-lua/plenary.nvim",
+
+            -- Adds undo history lookup.
+            -- CODE, VISUAL
+            "debugloop/telescope-undo.nvim",
         },
         config = function () require("plugins.telescope") end
     },
@@ -184,7 +197,12 @@ return {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = {
+            -- Adds functionality used by some plugins.
+            -- CODE
             "nvim-lua/plenary.nvim",
+
+            -- Adds an advanced search window.
+            -- CODE
             "nvim-telescope/telescope.nvim",
         },
         config = function() require("plugins.todo-comments") end
@@ -213,6 +231,8 @@ return {
         "stevearc/oil.nvim",
         event = "VimEnter",
         dependencies = {
+            -- Adds web icons support.
+            -- VISUAL
             "nvim-tree/nvim-web-devicons"
         },
         config = function() require("plugins.oil") end
@@ -224,6 +244,14 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "VimEnter",
         config = function() require("plugins.gitsigns") end
+    },
+
+    -- Adds a signature display.
+    -- CODE
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        config = function() require("plugins.lsp_signature") end
     },
 
     -- Adds quick file traversal keybindings.
@@ -240,6 +268,8 @@ return {
         "numToStr/Comment.nvim",
         event = "VeryLazy",
         dependencies = {
+            -- Adds a parser generator tool and an incremental parsing library.
+            -- CODE
             "nvim-treesitter/nvim-treesitter",
         },
         config = function () require("plugins.comment") end
@@ -259,6 +289,8 @@ return {
         "folke/flash.nvim",
         event = "VeryLazy",
         dependencies = {
+            -- Adds a parser generator tool and an incremental parsing library.
+            -- CODE
             "nvim-treesitter/nvim-treesitter",
         },
         keys = {
@@ -292,6 +324,30 @@ return {
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
-        config = function() require("which-key").setup() end
+        config = function() require("plugins.which-key") end
+    },
+
+    -- Adds a case sensitive replacement command.
+    -- CODE
+    {
+        "tpope/vim-abolish",
+        event = "VeryLazy",
+    },
+
+    -- Adds a view of functions, classes, and other relevant elements within the current buffer.
+    -- VISUAL, CODE
+    {
+        'stevearc/aerial.nvim',
+        event = "VeryLazy",
+        dependencies = {
+            -- Adds a parser generator tool and an incremental parsing library.
+            -- CODE
+            "nvim-treesitter/nvim-treesitter",
+
+            -- Adds web icons support.
+            -- VISUAL
+            "nvim-tree/nvim-web-devicons"
+        },
+        config = function() require("plugins.aerial") end
     },
 }

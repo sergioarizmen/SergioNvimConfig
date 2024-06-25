@@ -11,10 +11,21 @@ if not status_ok then
     return
 end
 
-telescope.setup()
+-- Call telescope setup.
+telescope.setup({})
+
+-- Call builtin functionality.
 local builtin = require("telescope.builtin")
 
+-- Setup key maps for the builtin functions.
 vim.keymap.set("n", "<C-p>", builtin.find_files, {})
 vim.keymap.set("n", "<leader>r", builtin.oldfiles, {})
+vim.keymap.set("n", "<leader>]", builtin.lsp_references, {})
 vim.keymap.set("n", "<leader>gr", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fj", builtin.help_tags, {})
+
+-- Call undo extension.
+telescope.load_extension("undo")
+
+-- Setup key maps for builtin functions.
+vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
