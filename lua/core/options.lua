@@ -18,6 +18,8 @@ opt.completeopt = 'menuone,noinsert,noselect'   -- Autocomplete options.
 opt.spell = true                                -- Activate spell checker.
 opt.timeout = true                              -- Sets a timeout on commands.
 opt.timeoutlen = 1000                           -- Sets the wait time until command timeout.
+opt.ignorecase = true                           -- Ignore case letters when searching.
+opt.smartcase = true                            -- Make the pattern case sensitive if uppercase letters are present.
 
 -----------------------------------------------------------
 -- Neovim UI
