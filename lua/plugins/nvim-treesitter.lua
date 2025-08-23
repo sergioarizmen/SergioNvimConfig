@@ -13,7 +13,7 @@ end
 
 treesitter.setup({
     modules = {},
-    ensure_installed = { "lua", "vim", "python", "markdown_inline", "php", "javascript", "css", "html" },
+    ensure_installed = { "lua", "vim", "python", "markdown_inline", "javascript", "css", "html" },
     highlight = {
         enable = true,
         disable = { "c", "rust" },
