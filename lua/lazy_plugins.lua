@@ -168,7 +168,7 @@ return {
     --  and adds a window header.
     -- VISUAL
     {
-        "freddiehaddad/feline.nvim",
+        "famiu/feline.nvim",
         event = "VimEnter",
         opts = {},
         config = function() require("plugins.feline") end
