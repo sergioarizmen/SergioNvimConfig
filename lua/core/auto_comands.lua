@@ -2,61 +2,60 @@
 -- Autocommand functions
 -----------------------------------------------------------
 
--- Define autocommands with Lua APIs
+-- Define autocommands with Lua APIs.
 -- See: h:api-autocmd, h:augroup
 
-local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group.
+local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand.
 
 -- Startup commands:
---
-autocmd('VimEnter', {
-  command = ":cd $USERPROFILE"
-})
+-- Move to user folder on startup.
+-- autocmd('VimEnter', {
+--     command = ":cd $USERPROFILE"
+-- })
 
 -- Editor settings:
--- Highlight on yank
+-- Highlight on yank.
 augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
-  group = 'YankHighlight',
-  callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '1000' })
-  end
+    group = 'YankHighlight',
+    callback = function()
+        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '1000' })
+    end
 })
 
--- Remove whitespace on save
+-- Remove whitespace on save.
 autocmd('BufWritePre', {
-  pattern = '*',
-  command = ":%s/\\s\\+$//e"
+    pattern = '*',
+    command = ":%s/\\s\\+$//e"
 })
 
 -- Settings for filetypes:
--- Disable line length marker
+-- Disable line length marker.
 augroup('setLineLength', { clear = true })
 autocmd('Filetype', {
-  group = 'setLineLength',
-  pattern = require('core.config.disable_line_length_marker'),
-  command = 'setlocal cc=0'
+    group = 'setLineLength',
+    pattern = require('core.config.disable_line_length_marker'),
+    command = 'setlocal cc=0'
 })
 
 -- Terminal settings:
--- Open a Terminal on the right tab
+-- Open a Terminal on the right tab.
 autocmd('CmdlineEnter', {
-  command = 'command! Term :botright vsplit term://$SHELL'
+    command = 'command! Term :botright vsplit term://$SHELL'
 })
 
--- Enter insert mode when switching to terminal
+-- Enter insert mode when switching to terminal.
 autocmd('TermOpen', {
-  command = 'setlocal listchars= nonumber norelativenumber nocursorline',
+    command = 'setlocal listchars= nonumber norelativenumber nocursorline',
 })
-
 autocmd('TermOpen', {
-  pattern = '*',
-  command = 'startinsert'
+    pattern = '*',
+    command = 'startinsert'
 })
 
--- Close terminal buffer on process exit
+-- Close terminal buffer on process exit.
 autocmd('BufLeave', {
-  pattern = 'term://*',
-  command = 'stopinsert'
+    pattern = 'term://*',
+    command = 'stopinsert'
 })

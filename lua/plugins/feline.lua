@@ -1,7 +1,6 @@
 ----------------------------------------------------------
--- Feline status line configuration.
+-- Feline status line configuration
 -----------------------------------------------------------
---
 -- Plugin: feline.nvim
 -- url: https://github.com/feline-nvim/feline.nvim
 

@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Vim surround configuration file.
+-- Vim surround configuration file
 ----------------------------------------------------------
---
 -- Plugin: vim-surround
 -- url: https://github.com/tpope/vim-surround
 

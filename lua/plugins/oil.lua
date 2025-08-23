@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Oil configuration file.
+-- Oil configuration file
 ----------------------------------------------------------
---
 -- Plugin: oil
 -- url: https://github.com/stevearc/oil.nvim
 

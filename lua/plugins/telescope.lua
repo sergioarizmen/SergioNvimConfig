@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Telescope plugin configuration file.
+-- Telescope plugin configuration file
 -----------------------------------------------------------
---
 -- Plugin: telescope
 -- url: https://github.com/nvim-telescope/telescope.nvim
 

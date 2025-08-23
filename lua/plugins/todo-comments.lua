@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Todo comments configuration file.
+-- Todo comments configuration file
 ----------------------------------------------------------
---
 -- Plugin: todo-comments
 -- url: https://github.com/folke/todo-comments.nvim
 

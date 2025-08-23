@@ -1,7 +1,6 @@
 ----------------------------------------------------------
--- Formatter configuration.
+-- Formatter configuration
 -----------------------------------------------------------
---
 -- Plugin: formatter.nvim
 -- url: https://github.com/mhartington/formatter.nvim
 

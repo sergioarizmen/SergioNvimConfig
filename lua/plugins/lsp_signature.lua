@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- LSP Signature configuration file.
+-- LSP Signature configuration file
 -----------------------------------------------------------
---
 -- Plugin: lsp_signature
 -- url: https://github.com/VonHeikemen/lsp-zero.nvim
 

@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Aerial plugin configuration file.
+-- Aerial plugin configuration file
 -----------------------------------------------------------
---
 -- Plugin: Aerial
 -- url: https://github.com/stevearc/aerial.nvim
 

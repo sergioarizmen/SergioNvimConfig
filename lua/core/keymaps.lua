@@ -1,20 +1,20 @@
 -----------------------------------------------------------
--- Define keymaps of Neovim and installed plugins.
+-- Keymap Definitions
 -----------------------------------------------------------
 
 local function map(mode, lhs, rhs)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- Change leader to a comma.
 vim.g.mapleader = ","
 
 -----------------------------------------------------------
--- Neovim shortcuts.
+-- Neovim shortcuts
 -----------------------------------------------------------
 
 -- Clear search highlighting with <leader> and c.

@@ -1,10 +1,8 @@
 -----------------------------------------------------------
--- Alpha plugin configuration file.
+-- Alpha plugin configuration file
 -----------------------------------------------------------
---
 -- Plugin: alpha-nvim
 -- url: https://github.com/goolord/alpha-nvim
---
 -- For configuration examples see: https://github.com/goolord/alpha-nvim/discussions/16
 
 -- Check if the plugin is properly installed.

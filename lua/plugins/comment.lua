@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Comment plugin configuration file.
+-- Comment plugin configuration file
 -----------------------------------------------------------
---
 -- Plugin: Comment
 -- url: https://github.com/numToStr/Comment.nvim
 

@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Wich-key configuration file.
+-- Wich-key configuration file
 ----------------------------------------------------------
---
 -- Plugin: which-key
 -- url: https://github.com/folke/which-key.nvim
 

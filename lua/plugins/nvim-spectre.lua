@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Specter plugin configuration file.
+-- Specter plugin configuration file
 -----------------------------------------------------------
---
 -- Plugin: nvim-spectre
 -- url: https://github.com/nvim-pack/nvim-spectre
 

@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- LSP Zero configuration file.
+-- LSP Zero configuration file
 -----------------------------------------------------------
---
 -- Plugin: lsp-zero
 -- url: https://github.com/VonHeikemen/lsp-zero.nvim
 

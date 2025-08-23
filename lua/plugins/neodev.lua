@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Neodev plugin configuration file.
+-- Neodev plugin configuration file
 -----------------------------------------------------------
---
 -- Plugin: neodev
 -- url: https://github.com/goolord/alpha-nvim
 

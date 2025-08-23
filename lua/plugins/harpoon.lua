@@ -1,7 +1,6 @@
 -----------------------------------------------------------
--- Harpoon configuration file.
+-- Harpoon configuration file
 ----------------------------------------------------------
---
 -- Plugin: harpoon
 -- url: https://github.com/ThePrimeagen/harpoon
 
