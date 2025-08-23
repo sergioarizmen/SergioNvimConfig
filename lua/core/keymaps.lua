@@ -20,11 +20,6 @@ vim.g.mapleader = ","
 -- Clear search highlighting with <leader> and c.
 map("n", "<leader>c", ":nohl<CR>")
 
--- Remaps to facilitate editing functions, lists or parameters.
-map("i", "{<CR>", "{<CR>}<C-o>O")
-map("i", "[<CR>", "[<CR>]<C-o>O")
-map("i", "(<CR>", "(<CR>)<C-o>O")
-
 -- Move around splits using Ctrl + {h,j,k,l}.
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
