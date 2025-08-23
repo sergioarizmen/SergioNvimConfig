@@ -13,7 +13,7 @@ end
 
 -- Call tree setup.
 nvim_tree.setup {
-    hijack_cursor = true,
+    hijack_cursor = false,
     auto_reload_on_write = true,
     create_in_closed_folder = false,
     hijack_netrw = true,
@@ -90,7 +90,7 @@ nvim_tree.setup {
     },
     update_focused_file = {
         enable = true,
-        update_cwd = true,
+        update_root = false,
         ignore_list = {},
     },
     system_open = {
