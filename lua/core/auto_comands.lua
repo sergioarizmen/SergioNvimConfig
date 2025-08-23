@@ -35,7 +35,7 @@ autocmd('BufWritePre', {
 augroup('setLineLength', { clear = true })
 autocmd('Filetype', {
   group = 'setLineLength',
-  pattern = { 'text', 'markdown', 'html', 'xhtml', 'javascript', 'typescript' },
+  pattern = require('core.config.disable_line_length_marker'),
   command = 'setlocal cc=0'
 })
 
