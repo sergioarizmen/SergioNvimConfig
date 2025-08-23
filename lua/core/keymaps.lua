@@ -53,3 +53,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 -- Terminal mappings.
 map("n", "<C-t>", ":Term<CR>")      -- open.
 map("t", "<Esc>", "<C-\\><C-n>")    -- exit.
+
+-- Display error diagnostics on <leader> and e.
+map("n", "<leader>e", ":lua vim.diagnostic.open_float(0, {scope=\"line\"})<CR>")
