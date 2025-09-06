@@ -1,4 +1,4 @@
-----------------------------------------------------------
+-----------------------------------------------------------
 -- Formatter configuration
 -----------------------------------------------------------
 -- Plugin: formatter.nvim
@@ -14,4 +14,4 @@ end
 formatter.setup()
 
 -- Format(prettier).
-vim.keymap.set('n', '<leader>l', ':Format<CR>')
+vim.keymap.set("n", "<leader>l", ":Format<CR>")

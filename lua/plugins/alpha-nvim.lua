@@ -73,4 +73,4 @@ dashboard.opts.opts.noautocmd = true
 alpha.setup(dashboard.opts)
 
 -- Add an open key map.
-vim.keymap.set('n', '<leader>a', ':Alpha<CR>')
+vim.keymap.set("n", "<leader>a", ":Alpha<CR>")
