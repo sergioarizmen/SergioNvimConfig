@@ -10,6 +10,7 @@ if not status_ok then
     return
 end
 
+-- Call setup.
 indent_blankline.setup {
     exclude = {
         filetypes = {

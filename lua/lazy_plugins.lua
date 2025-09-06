@@ -147,7 +147,7 @@ return {
             -- CODE
             "nvim-treesitter/nvim-treesitter",
         },
-        config = function()  require("plugins.indent-blankline") end
+        config = function() require("plugins.indent-blankline") end
     },
 
     -- Adds a directory search tree.
@@ -314,7 +314,7 @@ return {
     -- Adds a formatting command.
     -- CODE
     {
-        'mhartington/formatter.nvim',
+        "mhartington/formatter.nvim",
         event = "VeryLazy",
         config = function() require("plugins.formatter") end
     },
@@ -337,7 +337,7 @@ return {
     -- Adds a view of functions, classes, and other relevant elements within the current buffer.
     -- VISUAL, CODE
     {
-        'stevearc/aerial.nvim',
+        "stevearc/aerial.nvim",
         event = "VeryLazy",
         dependencies = {
             -- Adds a parser generator tool and an incremental parsing library.

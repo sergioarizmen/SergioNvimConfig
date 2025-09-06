@@ -41,52 +41,52 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 -- Startup commands:
 -- Move to user folder on startup.
--- autocmd('VimEnter', {
+-- autocmd("VimEnter", {
 --     command = ":cd $USERPROFILE"
 -- })
 
 -- Editor settings:
 -- Highlight on yank.
-augroup('YankHighlight', { clear = true })
-autocmd('TextYankPost', {
-    group = 'YankHighlight',
+augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", {
+    group = "YankHighlight",
     callback = function()
-        vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '1000' })
+        vim.highlight.on_yank({ higroup = "IncSearch", timeout = "1000" })
     end
 })
 
 -- Remove whitespace on save.
-autocmd('BufWritePre', {
-    pattern = '*',
+autocmd("BufWritePre", {
+    pattern = "*",
     command = ":%s/\\s\\+$//e"
 })
 
 -- Settings for filetypes:
 -- Disable line length marker.
-augroup('setLineLength', { clear = true })
-autocmd('Filetype', {
-    group = 'setLineLength',
-    pattern = require('core.config.disable_line_length_marker'),
-    command = 'setlocal cc=0'
+augroup("setLineLength", { clear = true })
+autocmd("Filetype", {
+    group = "setLineLength",
+    pattern = require("core.custom.disable_line_length_marker"),
+    command = "setlocal cc=0"
 })
 
 -- Terminal settings:
 -- Open a Terminal on the right tab.
-autocmd('CmdlineEnter', {
-    command = 'command! Term :botright vsplit term://$SHELL'
+autocmd("CmdlineEnter", {
+    command = "command! Term :botright vsplit term://$SHELL"
 })
 
 -- Enter insert mode when switching to terminal.
-autocmd('TermOpen', {
-    command = 'setlocal listchars= nonumber norelativenumber nocursorline',
+autocmd("TermOpen", {
+    command = "setlocal listchars= nonumber norelativenumber nocursorline",
 })
-autocmd('TermOpen', {
-    pattern = '*',
-    command = 'startinsert'
+autocmd("TermOpen", {
+    pattern = "*",
+    command = "startinsert"
 })
 
 -- Close terminal buffer on process exit.
-autocmd('BufLeave', {
-    pattern = 'term://*',
-    command = 'stopinsert'
+autocmd("BufLeave", {
+    pattern = "term://*",
+    command = "stopinsert"
 })

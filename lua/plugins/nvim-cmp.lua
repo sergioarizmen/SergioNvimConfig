@@ -29,31 +29,31 @@ luasnip_loader.lazy_load()
 nvim_cmp.setup({
     preselect = nvim_cmp.PreselectMode.None,
     sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'path' },
-        { name = 'buffer' },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "path" },
+        { name = "buffer" },
     },
 
     -- Completion settings.
     completion = {
-        -- Equivalent to completeopt = 'menu,menuone,noselect'.
+        -- Equivalent to completeopt = "menu,menuone,noselect".
         keyword_length = 2
     },
 
     -- Key mappings.
     mapping = {
         -- Abort mappings on ESC.
-        ['<ESC>'] = nvim_cmp.mapping.abort(),
+        ["<ESC>"] = nvim_cmp.mapping.abort(),
 
         -- Complete on ENTER.
-        ['<CR>'] = nvim_cmp.mapping.confirm {
+        ["<CR>"] = nvim_cmp.mapping.confirm {
             behavior = nvim_cmp.ConfirmBehavior.Replace,
             select = true,
         },
 
         -- Move to next recommendation on TAB.
-        ['<Tab>'] = function(fallback)
+        ["<Tab>"] = function(fallback)
             if nvim_cmp.visible() then
                 nvim_cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -64,7 +64,7 @@ nvim_cmp.setup({
         end,
 
         -- Move to previous recommendation on SHIFT-TAB.
-        ['<S-Tab>'] = function(fallback)
+        ["<S-Tab>"] = function(fallback)
             if nvim_cmp.visible() then
                 nvim_cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then

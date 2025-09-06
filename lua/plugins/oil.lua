@@ -1,11 +1,11 @@
 -----------------------------------------------------------
 -- Oil configuration file
-----------------------------------------------------------
+-----------------------------------------------------------
 -- Plugin: oil
 -- url: https://github.com/stevearc/oil.nvim
 
 -- Check if the plugin is properly installed.
-local ok, oil = pcall(require, 'oil')
+local ok, oil = pcall(require, "oil")
 if not ok then
     return
 end

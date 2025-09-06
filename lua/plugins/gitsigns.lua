@@ -5,7 +5,7 @@
 -- url: https://github.com/lewis6991/gitsigns.nvim
 
 -- Check if the plugin is properly installed.
-local status_ok, gitsigns = pcall(require, 'gitsigns')
+local status_ok, gitsigns = pcall(require, "gitsigns")
 if not status_ok then
     return
 end

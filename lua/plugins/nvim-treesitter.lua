@@ -1,6 +1,6 @@
 -----------------------------------------------------------
 -- Treesitter configuration file
-----------------------------------------------------------
+-----------------------------------------------------------
 -- Plugin: nvim-treesitter
 -- url: https://github.com/nvim-treesitter/nvim-treesitter
 
