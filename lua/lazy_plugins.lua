@@ -141,7 +141,7 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        event = "VimEnter",
+        event = "User FilePost",
         dependencies = {
             -- Adds a parser generator tool and an incremental parsing library.
             -- CODE
@@ -242,7 +242,7 @@ return {
     -- VISUAL, CODE
     {
         "lewis6991/gitsigns.nvim",
-        event = "VimEnter",
+        event = "User FilePost",
         config = function() require("plugins.gitsigns") end
     },
 
