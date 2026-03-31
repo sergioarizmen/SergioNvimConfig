@@ -10,6 +10,8 @@ if not status_ok then
     return
 end
 
+-- dofile(vim.g.base46_cache .. "nvimtree")
+
 -- Call tree setup.
 nvim_tree.setup {
     hijack_cursor = false,
@@ -25,9 +27,9 @@ nvim_tree.setup {
         sorter = "case_sensitive",
     },
     view = {
-        width = 32,
+        width = 30,
         side = "left",
-        preserve_window_proportions = false,
+        preserve_window_proportions = true,
         number = false,
         relativenumber = false,
         signcolumn = "yes",
@@ -35,7 +37,7 @@ nvim_tree.setup {
     renderer = {
         add_trailing = false,
         group_empty = false,
-        highlight_git = false,
+        highlight_git = true,
         highlight_opened_files = "none",
         root_folder_modifier = ":~",
         indent_markers = {

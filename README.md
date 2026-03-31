@@ -12,7 +12,6 @@ Remember `:Tutor` helps you learn the basic vim editor configurations.
 - In normal mode, `<C-{up,down,left,right}>` will result in the current window expanding in the selected direction.
 - In visual mode, `J` will move the selected lines down.
 - In visual mode, `K` will move the selected lines up.
-- In insert mode, `{<CR>`, `[<CR>`, and `(<CR>` will result in two new lines with the corresponding sign closed.
 - In normal mode, `<C-t>` will open the terminal.
 - In terminal mode, `<Esc>` will close the terminal.
 
@@ -52,7 +51,7 @@ Highlights "TODO" comments and adds "TODO" comment quick search functionality.
 - Use `:TodoQuickFix` display all "TODO" comments in the project.
 - Use `:TodoTelescope` to open the search for "TODO" comments. (see [telescope](#nvim-telescope%2Ftelescope.nvim))
 
-> Mark comments starting them with the keyword: `TODO:`, `FIX:`, or `HACK:`.
+> Mark comments starting them with the keyword: `TODO:`, `NOTE:`, `FIX:`, or `HACK:`.
 
 ### tpope/vim-fugitive
 
@@ -98,8 +97,8 @@ Provides a fuzzy search window.
 - In normal mode, `,u` opens the undo telescope tree.
 - In normal mode, `,gr` opens the search for text within files.
 - In normal mode, `,fj` opens the search for previously opened help tags.
-- In normal mode, `?` opens the key maps display window.
-- In normal mode, `<Esc>` closes the telescope window.
+- In normal mode and with a telescope window open, `?` opens the key maps display window.
+- In normal mode and with a telescope window open, `<Esc>` closes the telescope window.
 
 ### stevearc/oil.nvim
 
@@ -144,6 +143,8 @@ Adds quick surrounding key maps.
 - In normal mode, `yss{surrounding}` adds `{surrounding}` text to the entire line.
 
 > Use `t` for `cs` and `ds` commands as `{current}` to easily replace/remove tags.
+>
+> Use the closing element, i.e. use `}` instead of `{`, to surround without adding spaces around the content.
 
 ### folke/flash.nvim
 

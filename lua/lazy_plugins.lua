@@ -8,6 +8,15 @@ return {
         priority = 1000,
     },
 
+    -- Adds a visual theme manager.
+    -- VISUAL
+    -- {
+    --     "nvchad/base46",
+    --     build = function()
+    --         require("base46").load_all_highlights()
+    --     end,
+    -- },
+
     -- Adds web icons support.
     -- VISUAL
     {
@@ -91,7 +100,7 @@ return {
     {
         "VonHeikemen/lsp-zero.nvim",
         cmd = "Mason",
-        branch = "v3.x",
+        branch = "v4.x",
         dependencies = {
             -- Adds Neovim's default lsp configurations.
             -- CODE
@@ -114,6 +123,12 @@ return {
             "SmiteshP/nvim-navic",
         },
         config = function() require("plugins.lsp-zero") end
+    },
+
+    {
+        "nvimtools/none-ls.nvim",
+        event = "VeryLazy",
+        config = function() require("plugins.none-ls") end
     },
 
     -- Adds luasnip completion source for nvim-cmp.
@@ -219,10 +234,12 @@ return {
     -- VISUAL, CODE
     {
         "iamcco/markdown-preview.nvim",
-        event = "VimEnter",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
         ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end
     },
 
     -- Adds a window to edit files as code.
@@ -324,6 +341,7 @@ return {
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
+        cmd = "WhichKey",
         config = function() require("plugins.which-key") end
     },
 
