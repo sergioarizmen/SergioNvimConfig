@@ -21,7 +21,7 @@ opt.timeoutlen = 1000           -- Sets the wait time until command timeout.
 opt.ignorecase = true           -- Ignore case letters when searching.
 opt.smartcase = true            -- Make patterns case sensitive if uppercase.
 opt.mouse = "a"                 -- Enable all mouse modes.
-opt.undofile = true             -- Save undo information to a separate file.
+opt.undofile = true             -- Save undo information to a separate file (caching  between sessions).
 
 -- Go to previous/next line when cursor reaches end/beginning of line.
 opt.whichwrap:append "<>[]hl"

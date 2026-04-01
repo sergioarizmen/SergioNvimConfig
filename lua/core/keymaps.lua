@@ -2,16 +2,17 @@
 -- Keymap Definitions
 -----------------------------------------------------------
 
-local function map(mode, lhs, rhs)
+local function map(mode, lhs, rhs, opts)
     local options = { noremap = true, silent = true }
     if opts then
-        options = vim.tbl_extend("force", options)
+        options = vim.tbl_extend("force", options, opts)
     end
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- Change leader to a comma.
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 -----------------------------------------------------------
 -- Neovim shortcuts
@@ -61,11 +62,15 @@ map("n", "<C-right>", "<cmd>vertical resize +2<CR>", { desc = "increase horizont
 
 -- Display error diagnostics on <leader> and e.
 map("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float(0, {scope=\"line\"})<CR>",
-    { desc = "display error diagnostics" })
+    { desc = "display [e]rror diagnostics" })
+
+-- Display all diagnostic information as list.
+map('n', '<leader>q', "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = 'open diagnostic [q]uickfix list' })
 
 -- Move lines around.
-map("v", "J", "<cmd>m '>+1<CR>gv=gv", { desc = "move line down" })
-map("v", "K", "<cmd>m '<-2<CR>gv=gv", { desc = "move line up" })
+-- NOTE: The explicit use of ":" rather than "<cmd>" is due so Nvim doesn't try to populate the "<>" as visual marks.
+map("v", "J", "<Esc><cmd>m '>+1<CR>gv=gv", { desc = "move line down" })
+map("v", "K", "<Esc><cmd>m '<-2<CR>gv=gv", { desc = "move line up" })
 
 -- Terminal mappings.
 map("n", "<C-t>", "<cmd>Term<CR>", { desc = "open terminal" })
