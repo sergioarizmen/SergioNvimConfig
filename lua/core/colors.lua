@@ -11,7 +11,11 @@ if not status_ok then
 end
 
 -- OneDark styles: dark, darker, cool, deep, warm, warmer, light.
-require("catppuccin").setup()
+require("catppuccin").setup({
+    integrations = {
+        lualine = true,
+    },
+})
 
 local M = {}
 

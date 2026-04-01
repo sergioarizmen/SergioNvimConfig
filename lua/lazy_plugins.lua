@@ -8,15 +8,6 @@ return {
         priority = 1000,
     },
 
-    -- Adds a visual theme manager.
-    -- VISUAL
-    -- {
-    --     "nvchad/base46",
-    --     build = function()
-    --         require("base46").load_all_highlights()
-    --     end,
-    -- },
-
     -- Adds web icons support.
     -- VISUAL
     {
@@ -40,8 +31,13 @@ return {
     -- CODE
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "master",
+        event = "VeryLazy",
         build = ":TSUpdate",
-        cmd = { "TSInstallInfo", "TSInstall" },
+        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+        },
         config = function() require("plugins.nvim-treesitter") end
     },
 
@@ -182,11 +178,34 @@ return {
     -- Improves the standard vim status line (at the bottom)
     --  and adds a window header.
     -- VISUAL
+    -- Improves the standard vim status line (at the bottom)
+    --  and adds a window header.
+    -- VISUAL
     {
-        "famiu/feline.nvim",
+        "nvim-lualine/lualine.nvim",
         event = "VimEnter",
-        opts = {},
-        config = function() require("plugins.feline") end
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function() require("plugins.lualine") end
+    },
+
+    -- Adds a UI for messages, cmdline and the popupmenu.
+    -- VISUAL
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        },
+        config = function() require("plugins.noice") end
+    },
+
+    -- Adds a notification manager.
+    -- VISUAL
+    {
+        "rcarriga/nvim-notify",
+        event = "VeryLazy",
+        config = function() require("plugins.nvim-notify") end
     },
 
     -- Adds an advanced search window.
@@ -259,7 +278,7 @@ return {
     -- VISUAL, CODE
     {
         "lewis6991/gitsigns.nvim",
-        event = "User FilePost",
+        event = "VeryLazy",
         config = function() require("plugins.gitsigns") end
     },
 
