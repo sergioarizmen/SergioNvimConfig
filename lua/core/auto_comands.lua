@@ -2,7 +2,7 @@
 -- Autocommand functions
 -----------------------------------------------------------
 
--- Define autocommand and autocommand creation function aliases aliases.
+-- Define autocommand and autocommand creation function aliases.
 -- See: h:api-autocmd, h:augroup
 local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group.
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand.
@@ -34,10 +34,6 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
         end
     end,
 })
-
------------------------------------------------------------
--- Autocommand functions
------------------------------------------------------------
 
 -- Startup commands:
 -- Move to user folder on startup.
