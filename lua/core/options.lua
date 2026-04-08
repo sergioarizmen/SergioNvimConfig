@@ -8,7 +8,7 @@
 
 local g = vim.g       -- Global variables.
 local opt = vim.opt   -- Set options (global/buffer/windows-scoped).
-local diagnostics = vim.diagnostics -- Diagnostics options.
+local diagnostics = vim.diagnostic -- Diagnostics options.
 
 -----------------------------------------------------------
 -- General
