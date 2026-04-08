@@ -168,4 +168,4 @@ nvim_tree.setup {
 }
 
 -- Add a tree view toggle key map.
-vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-e>", ":NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle [E]xplorer" })

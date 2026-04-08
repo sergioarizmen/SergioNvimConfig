@@ -30,4 +30,4 @@ oil.setup({
 })
 
 
-vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>o", require("oil").open, { desc = "Open [O]il (parent directory)" })

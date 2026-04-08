@@ -70,8 +70,8 @@ snacks.setup({
 -- Get the custom utility map function.
 local map = require("core.utils.map")
 
--- Lazygit keymaps.
-map("n", "<leader>lg", function() Snacks.lazygit() end, "[L]azy[G]it")
+-- Git keymaps.
+map("n", "<leader>gg", function() Snacks.lazygit() end, "[G]it [G]it (Lazygit)")
 
 -- Notifier keymaps.
 map("n", "<leader>un", function() Snacks.notifier.hide() end, "Dismiss All Notifications")
@@ -86,30 +86,27 @@ map({ "n", "t" }, "[[", function() Snacks.words.jump(-vim.v.count1) end, "Prev R
 
 -- Picker key maps.
 map("n", "\\", function() Snacks.explorer() end, "File Explorer")
-map("n", "<leader>ss", function() Snacks.picker.smart() end, "Smart Find Files")
-map("n", "<leader><space>", function() Snacks.picker.buffers() end, "[ ] Find existing buffers")
+map("n", "<leader>ss", function() Snacks.picker.smart() end, "[S]earch [S]mart")
+map("n", "<leader>sb", function() Snacks.picker.buffers() end, "[S]earch [B]uffers")
 map("n", "<leader>sg", function() Snacks.picker.grep() end, "[S]earch by [G]rep")
 map("n", "<leader>sn", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, "[S]earch [N]eovim files")
 map("n", "<leader>sf", function() Snacks.picker.files() end, "[S]earch [F]iles")
-map("n", "<leader>sp", function() Snacks.picker.pickers() end, "[S]earch [P]ickers")
-map("n", "<leader>s.", function() Snacks.picker.recent() end, "[S]earch Recent Files ('.' for repeat)")
+map("n", "<leader>sl", function() Snacks.picker.pickers() end, "[S]earch pickers [L]ist")
+map("n", "<leader>s.", function() Snacks.picker.recent() end, "[S]earch Recent Files")
 map("n", "<leader>sk", function() Snacks.picker.keymaps() end, "[S]earch [K]eymaps")
 map({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, "[S]earch current [W]ord")
-map("n", "<leader>sr", function() Snacks.picker.resume() end, "[S]earch [R]esume")
+map("n", "<leader>sR", function() Snacks.picker.resume() end, "[S]earch [R]esume")
 map("n", "<leader>sh", function() Snacks.picker.help() end, "[S]earch [H]elp")
 map("n", "<leader>sd", function() Snacks.picker.diagnostics() end, "[S]earch [D]iagnostics")
 map("n", "<leader>s/", function() Snacks.picker.grep_buffers() end, "[S]earch [/] in Open Files")
+map("n", "<leader>su", function() Snacks.picker.undo() end, "[S]earch [U]ndo History")
+map("n", "<leader>st", function() Snacks.picker.todo() end, "[S]earch [T]odo Comments")
+
+-- Common shortcuts
 map("n", "<C-p>", function() Snacks.picker.files() end, "Find Files")
-map("n", "<leader>r", function() Snacks.picker.recent() end, "Recent Files")
-map("n", "<leader>]", function() Snacks.picker.lsp_references() end, "LSP References")
-map("n", "<leader>gr", function() Snacks.picker.grep() end, "Live Grep")
-map("n", "<leader>fj", function() Snacks.picker.help() end, "Help Tags")
-map("n", "<leader>u", function() Snacks.picker.undo() end, "Undo History")
-map("n", "<leader>st", function() Snacks.picker.todo() end, "Todo Comments")
 map("n", "<leader>/",
     function()
         Snacks.picker.lines({
-            -- Use the Select layout.
             layout = {
                 preset = "select",
             },

@@ -27,4 +27,4 @@ aerial.setup({
 })
 
 -- Add an open key map.
-vim.keymap.set("n", "<leader>z", "<cmd>AerialToggle!<CR>")
+vim.keymap.set("n", "<leader>co", "<cmd>AerialToggle!<CR>", { desc = "[C]ode [O]utline (Aerial)" })

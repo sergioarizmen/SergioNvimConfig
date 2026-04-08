@@ -57,8 +57,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local options = { buffer = event.buf }
 
         -- Rename the variable under the cursor.
-        -- Most Language Servers support renaming across files, etc.
-        map("n", "<leader>rn", vim.lsp.buf.rename, "LSP: [R]e[n]ame", options)
+        map("n", "<leader>cr", vim.lsp.buf.rename, "LSP: [C]ode [R]ename", options)
 
         -- Execute a code action, usually the cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
@@ -87,14 +86,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             "LSP: [G]oto [D]eclaration", options)
 
         -- Fuzzy find all the symbols in the current document.
-        -- Symbols are things like variables, functions, types, etc.
-        map("n", "<leader>ds", function() Snacks.picker.lsp_symbols() end,
-            "LSP: Open [D]ocument [S]ymbols", options)
+        map("n", "<leader>cs", function() Snacks.picker.lsp_symbols() end,
+            "LSP: [C]ode [S]ymbols", options)
 
         -- Fuzzy find all the symbols in the current workspace.
-        -- Similar to document symbols, except searches over the entire project.
-        map("n", "<leader>ws", function() Snacks.picker.lsp_workspace_symbols() end,
-            "LSP: Open [W]orkspace [S]ymbols", options)
+        map("n", "<leader>cS", function() Snacks.picker.lsp_workspace_symbols() end,
+            "LSP: [C]ode Workspace [S]ymbols", options)
 
         -- Jump to the *type* definition of the word under the cursor.
         map("n", "gt", function() Snacks.picker.lsp_type_definitions() end,
@@ -132,9 +129,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- The following code creates a keymap to toggle inlay hints in code, if supported by the LSP.
         -- WARN: This visually displaces the code.
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map("n", "<leader>th", function()
+            map("n", "<leader>uh", function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-            end, "[T]oggle Inlay [H]ints", options)
+            end, "[U]I Toggle Inlay [H]ints", options)
         end
     end,
 })

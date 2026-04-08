@@ -28,9 +28,9 @@ dashboard.section.header.val = {
 -- Set buttons.
 dashboard.section.buttons.val = {
     dashboard.button("e", "  New file", ":ene <CR>"),
-    dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
-    dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-    dashboard.button("gr", "  Find text", ":Telescope live_grep <CR>"),
+    dashboard.button("r", "  Recently used files", ":lua Snacks.picker.recent() <CR>"),
+    dashboard.button("f", "  Find file", ":lua Snacks.picker.files() <CR>"),
+    dashboard.button("gr", "  Find text", ":lua Snacks.picker.grep() <CR>"),
     dashboard.button("s", "  Settings", ":cd $USERPROFILE/AppData/Local/nvim<CR> :e $MYVIMRC<CR>"),
     dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
@@ -73,4 +73,4 @@ dashboard.opts.opts.noautocmd = true
 alpha.setup(dashboard.opts)
 
 -- Add an open key map.
-vim.keymap.set("n", "<leader>a", ":Alpha<CR>")
+vim.keymap.set("n", "<leader>ua", ":Alpha<CR>", { desc = "[U]I [A]lpha (Dashboard)" })

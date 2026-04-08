@@ -33,10 +33,10 @@ harpoon.setup({
 
 -- Add kaymaps.
 -- Open quick menu.
-keymap.set("n", "<C-e>", harpoon_ui.toggle_quick_menu, opts)
+keymap.set("n", "<leader>hm", harpoon_ui.toggle_quick_menu, opts)
 
 -- Add file to quick access.
-keymap.set("n", "<leader>h", harpoon_mark.add_file, opts)
+keymap.set("n", "<leader>ha", harpoon_mark.add_file, opts)
 
 -- Open file from quick access.
 keymap.set("n", "<leader>1", function() harpoon_ui.nav_file(1) end, opts)
