@@ -8,6 +8,7 @@
 
 local g = vim.g       -- Global variables.
 local opt = vim.opt   -- Set options (global/buffer/windows-scoped).
+local diagnostics = vim.diagnostics -- Diagnostics options.
 
 -----------------------------------------------------------
 -- General
@@ -65,6 +66,36 @@ opt.history = 100       -- Remember N lines in history.
 opt.lazyredraw = false  -- Disabled for Noice compatibility.
 opt.synmaxcol = 240     -- Max column for syntax highlight.
 opt.updatetime = 700    -- ms to wait for trigger an event.
+
+-----------------------------------------------------------
+-- Diagnostics
+-----------------------------------------------------------
+-- See :help vim.diagnostic.Opts
+diagnostics.config {
+    severity_sort = true,
+    float = { border = 'rounded', source = 'if_many' },
+    signs = g.have_nerd_font and {
+        text = {
+            [diagnostics.severity.ERROR] = '󰅚 ',
+            [diagnostics.severity.WARN] = '󰀪 ',
+            [diagnostics.severity.INFO] = '󰋽 ',
+            [diagnostics.severity.HINT] = '󰌶 ',
+        },
+    } or {},
+    virtual_text = {
+        source = 'if_many',
+        spacing = 2,
+        format = function(diagnostic)
+            local diagnostic_message = {
+                [diagnostics.severity.ERROR] = diagnostic.message,
+                [diagnostics.severity.WARN] = diagnostic.message,
+                [diagnostics.severity.INFO] = diagnostic.message,
+                [diagnostics.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
+        end,
+    },
+}
 
 -----------------------------------------------------------
 -- Startup
