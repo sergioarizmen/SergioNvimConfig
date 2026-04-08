@@ -49,9 +49,24 @@ Works like the `:s[ubstitute]` command.
 Highlights "TODO" comments and adds "TODO" comment quick search functionality.
 
 - Use `:TodoQuickFix` display all "TODO" comments in the project.
-- Use `:TodoTelescope` to open the search for "TODO" comments. (see [telescope](#nvim-telescope%2Ftelescope.nvim))
+- Use `,st` to open the search for "TODO" comments using Snacks picker.
 
 > Mark comments starting them with the keyword: `TODO:`, `NOTE:`, `FIX:`, or `HACK:`.
+
+### folke/snacks.nvim
+
+Provides multiple utility features, including a fuzzy search window (picker).
+
+- In normal mode, `<C-p>` opens the file finder.
+- In normal mode, `,r` opens the search for previously opened files.
+- In normal mode, `,]` opens the search for references of the word under the cursor.
+- In normal mode, `,u` opens the undo history.
+- In normal mode, `,gr` opens the search for text within files (grep).
+- In normal mode, `,fj` opens the search for help tags.
+- In normal mode, `\\` toggles the snacks explorer.
+- In normal mode, `,ss` opens the smart finder.
+- In normal mode and with a picker window open, `?` opens the key maps display window.
+- In normal mode and with a picker window open, `<Esc>` closes the picker window.
 
 ### tpope/vim-fugitive
 
@@ -86,19 +101,6 @@ Provides a configurable directory tree view.
 
 - In normal mode, `<C-n>` toggles the tree-explorer window.
 - With the tree-explorer window selected, `g?`opens the key maps display window.
-
-### nvim-telescope/telescope.nvim
-
-Provides a fuzzy search window.
-
-- In normal mode, `<C-p>` opens the telescope finder.
-- In normal mode, `,r` opens the search for previously opened files.
-- In normal mode, `,]` opens the search for references of the word under the cursor.
-- In normal mode, `,u` opens the undo telescope tree.
-- In normal mode, `,gr` opens the search for text within files.
-- In normal mode, `,fj` opens the search for previously opened help tags.
-- In normal mode and with a telescope window open, `?` opens the key maps display window.
-- In normal mode and with a telescope window open, `<Esc>` closes the telescope window.
 
 ### stevearc/oil.nvim
 

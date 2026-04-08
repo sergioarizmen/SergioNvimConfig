@@ -14,17 +14,59 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
 
-    -- Adds Neovim's default lsp configurations.
+    -- Adds an autocompletion engine.
+    -- Integrates with other autocompletion tools.
+    -- CODE
+    {
+        "saghen/blink.cmp",
+        event = "VeryLazy",
+        version = "1.*",
+        dependencies = {
+            -- Adds snipet functionality.
+            -- C compiler (gcc, clang, or zig) and make are required.
+            -- CODE
+            {
+                "L3MON4D3/LuaSnip",
+                version = "2.*",
+                build = "make install_jsregexp",
+            },
+
+            -- Adds a snippet collection.
+            -- CODE
+            "rafamadriz/friendly-snippets",
+
+            -- Allows lazy updating workspace libraries.
+            -- NEOVIM DEVELOPMENT, CODE
+            "folke/lazydev.nvim",
+        },
+        config = function() require("plugins.blink") end
+    },
+
+    -- Adds Neovim"s default lsp configurations.
     -- CODE
     {
         "neovim/nvim-lspconfig",
-    },
+        event = "VeryLazy",
+        dependencies = {
+            -- Automatically install LSPs and related tools to stdpath for Neovim.
+            -- CODE
+            { "mason-org/mason.nvim", opts = {} },
 
-    -- Adds startup time measurements and quick view.
-    -- NEOVIM DEVELOPMENT
-    {
-        "dstein64/vim-startuptime",
-        cmd = "StartupTime",
+            -- Bridge between mason.nvim and lspconfig.
+            -- CODE
+            "mason-org/mason-lspconfig.nvim",
+
+            -- Helps keep mason.nvim tools up to date.
+            -- CODE
+            "WhoIsSethDaniel/mason-tool-installer.nvim",
+
+            -- Adds useful status updates for LSP.
+            -- VISUAl, CODE
+            { "j-hui/fidget.nvim", opts = {} },
+
+            "saghen/blink.cmp",
+        },
+        config = function() require("plugins.mason") end
     },
 
     -- Adds a parser generator tool and an incremental parsing library.
@@ -36,115 +78,11 @@ return {
         build = ":TSUpdate",
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         dependencies = {
+            -- Adds syntax aware text-objects, select, move, swap, and peek support.
+            -- CODE
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
         config = function() require("plugins.nvim-treesitter") end
-    },
-
-    -- Adds Neovim development support.
-    -- NEOVIM DEVELOPMENT, CODE
-    {
-        "folke/neodev.nvim",
-        lspconfig = true,
-        dependencies = {
-            -- Adds Neovim's default lsp configurations.
-            -- CODE
-            "neovim/nvim-lspconfig",
-        },
-        config = function() require("plugins.neodev") end
-    },
-
-    -- Allows integration of LSP servers, linters, and formatters.
-    -- CODE
-    {
-        "williamboman/mason.nvim",
-        dependencies = {
-            -- Adds Neovim's default lsp configurations.
-            -- CODE
-            "neovim/nvim-lspconfig",
-
-            -- Bridge between mason.nvim and lspconfig.
-            -- CODE
-            "williamboman/mason-lspconfig.nvim",
-        },
-        build = function() pcall(vim.cmd, "MasonUpdate") end,
-        config = function() require("plugins.mason") end
-    },
-
-    -- Adds a completion engine.
-    -- CODE
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            -- Adds Neovim's default lsp configurations.
-            -- CODE
-            "neovim/nvim-lspconfig",
-
-            -- Bridge between nvim-cmp and lspconfig.
-            -- CODE
-            "hrsh7th/cmp-nvim-lsp",
-
-            -- Adds snipet functionality.
-            -- CODE
-            "L3MON4D3/LuaSnip",
-        },
-        config = function() require("plugins.nvim-cmp") end
-    },
-
-    -- Adds functions to setup Neovim's LSP.
-    -- CODE
-    {
-        "VonHeikemen/lsp-zero.nvim",
-        cmd = "Mason",
-        branch = "v4.x",
-        dependencies = {
-            -- Adds Neovim's default lsp configurations.
-            -- CODE
-            "neovim/nvim-lspconfig",
-
-            -- Bridge between nvim-cmp and lspconfig.
-            -- CODE
-            "hrsh7th/cmp-nvim-lsp",
-
-            -- Adds a completion engine.
-            -- CODE
-            "hrsh7th/nvim-cmp",
-
-            -- Adds snipet functionality.
-            -- CODE
-            "L3MON4D3/LuaSnip",
-
-            -- Adds a status line showing the current code context.
-            -- VISUAL
-            "SmiteshP/nvim-navic",
-        },
-        config = function() require("plugins.lsp-zero") end
-    },
-
-    {
-        "nvimtools/none-ls.nvim",
-        event = "VeryLazy",
-        config = function() require("plugins.none-ls") end
-    },
-
-    -- Adds luasnip completion source for nvim-cmp.
-    -- CODE
-    {
-        "saadparwaiz1/cmp_luasnip"
-    },
-
-    -- Adds a snippet collection.
-    -- CODE
-    {
-        "rafamadriz/friendly-snippets"
-    },
-
-    -- Adds startup display.
-    -- VISUAL, QUICK START
-    {
-        "goolord/alpha-nvim",
-        event = "VimEnter",
-        config = function() require("plugins.alpha-nvim") end
     },
 
     -- Adds indentation visual indicators.
@@ -154,50 +92,9 @@ return {
         main = "ibl",
         event = "User FilePost",
         dependencies = {
-            -- Adds a parser generator tool and an incremental parsing library.
-            -- CODE
             "nvim-treesitter/nvim-treesitter",
         },
         config = function() require("plugins.indent-blankline") end
-    },
-
-    -- Adds a directory search tree.
-    -- VISUAL, QUICK START
-    {
-		"nvim-tree/nvim-tree.lua",
-        version = "*",
-        event = "VimEnter",
-        dependencies = {
-            -- Adds web icons support.
-            -- VISUAL
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function() require("plugins.nvim-tree") end
-    },
-
-    -- Improves the standard vim status line (at the bottom)
-    --  and adds a window header.
-    -- VISUAL
-    -- Improves the standard vim status line (at the bottom)
-    --  and adds a window header.
-    -- VISUAL
-    {
-        "nvim-lualine/lualine.nvim",
-        event = "VimEnter",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        config = function() require("plugins.lualine") end
-    },
-
-    -- Adds a UI for messages, cmdline and the popupmenu.
-    -- VISUAL
-    {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
-        config = function() require("plugins.noice") end
     },
 
     -- Adds a notification manager.
@@ -208,22 +105,21 @@ return {
         config = function() require("plugins.nvim-notify") end
     },
 
-    -- Adds an advanced search window.
-    -- CODE
+    -- Adds a UI for messages, cmdline and the popupmenu.
+    -- VISUAL
     {
-        "nvim-telescope/telescope.nvim",
-        event = "VimEnter",
+        "folke/noice.nvim",
+        event = "VeryLazy",
         dependencies = {
-            -- Adds functionality used by some plugins.
-            -- CODE
-            "nvim-lua/plenary.nvim",
+            -- Adds UI components.
+            -- VISUAL
+            "MunifTanjim/nui.nvim",
 
-            -- Adds undo history lookup.
-            -- CODE, VISUAL
-            "debugloop/telescope-undo.nvim",
+            "rcarriga/nvim-notify",
         },
-        config = function () require("plugins.telescope") end
+        config = function() require("plugins.noice") end
     },
+
 
     -- Adds special task comments" highlighting and search.
     -- CODE
@@ -231,47 +127,9 @@ return {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = {
-            -- Adds functionality used by some plugins.
-            -- CODE
             "nvim-lua/plenary.nvim",
-
-            -- Adds an advanced search window.
-            -- CODE
-            "nvim-telescope/telescope.nvim",
         },
         config = function() require("plugins.todo-comments") end
-    },
-
-    -- Adds a vim command to execute git actions from within Neovim.
-    -- CODE
-    {
-        "tpope/vim-fugitive",
-        event = "VimEnter",
-    },
-
-    -- Adds markdown files" preview functionality.
-    -- VISUAL, CODE
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        build = "cd app && npm install",
-        init = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-        end,
-        ft = { "markdown" },
-    },
-
-    -- Adds a window to edit files as code.
-    -- CODE, VISUAL
-    {
-        "stevearc/oil.nvim",
-        event = "VimEnter",
-        dependencies = {
-            -- Adds web icons support.
-            -- VISUAL
-            "nvim-tree/nvim-web-devicons"
-        },
-        config = function() require("plugins.oil") end
     },
 
     -- Adds visual indicators for who contributed with which line of code.
@@ -282,30 +140,12 @@ return {
         config = function() require("plugins.gitsigns") end
     },
 
-    -- Adds a signature display.
-    -- CODE
-    {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        config = function() require("plugins.lsp_signature") end
-    },
-
-    -- Adds quick file traversal keybindings.
-    -- CODE
-    {
-        "ThePrimeagen/harpoon",
-        event = "VeryLazy",
-        config = function() require("plugins.harpoon") end
-    },
-
     -- Adds fast comment key maps.
     -- CODE
     {
         "numToStr/Comment.nvim",
         event = "VeryLazy",
         dependencies = {
-            -- Adds a parser generator tool and an incremental parsing library.
-            -- CODE
             "nvim-treesitter/nvim-treesitter",
         },
         config = function () require("plugins.comment") end
@@ -319,40 +159,86 @@ return {
         config = function() require("plugins.vim-surround") end
     },
 
-    -- Improves search functions and search motions.
+    -- Adds a case sensitive replacement command.
     -- CODE
     {
-        "folke/flash.nvim",
+        "tpope/vim-abolish",
         event = "VeryLazy",
+    },
+
+    -- Adds a formatting command.
+    -- CODE
+    {
+        "stevearc/conform.nvim",
+        event = "BufWritePre",
+        cmd = { "ConformInfo" },
+        config = function() require("plugins.conform") end
+    },
+
+    -- Adds a collection of small quality of life plugins.
+    -- VISUAL, CODE
+    {
+        "folke/snacks.nvim",
+        event = "VimEnter",
+        config = function() require("plugins.snacks") end
+    },
+
+    -- Adds a directory search tree.
+    -- VISUAL, QUICK START
+    {
+		"nvim-tree/nvim-tree.lua",
+        version = "*",
+        event = "VimEnter",
         dependencies = {
-            -- Adds a parser generator tool and an incremental parsing library.
-            -- CODE
-            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
-        keys = {
-            -- TODO: Move keybindings to a configuration file.
-            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            -- { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-            -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-            -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        config = function() require("plugins.nvim-tree") end
+    },
+
+    -- Improves the standard vim status line (at the bottom) and adds a window header.
+    -- VISUAL
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "VimEnter",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
         },
+        config = function() require("plugins.lualine") end
+    },
+
+    -- Adds startup display.
+    -- VISUAL, QUICK START
+    {
+        "goolord/alpha-nvim",
+        event = "VimEnter",
+        config = function() require("plugins.alpha-nvim") end
+    },
+
+    -- Adds a window to edit files as code.
+    -- VISUAL
+    {
+        "stevearc/oil.nvim",
+        event = "VimEnter",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function() require("plugins.oil") end
     },
 
     -- Adds regex search and replacement.
-    -- CODE, VISUAL
+    -- VISUAL
     {
         "nvim-pack/nvim-spectre",
         event = "VeryLazy",
         config = function() require("plugins.nvim-spectre") end
     },
 
-    -- Adds a formatting command.
-    -- CODE
+    -- Adds quick file traversal keybindings.
+    -- VISUAL
     {
-        "mhartington/formatter.nvim",
+        "ThePrimeagen/harpoon",
         event = "VeryLazy",
-        config = function() require("plugins.formatter") end
+        config = function() require("plugins.harpoon") end
     },
 
     -- Adds a window suggesting key commands.
@@ -364,27 +250,27 @@ return {
         config = function() require("plugins.which-key") end
     },
 
-    -- Adds a case sensitive replacement command.
-    -- CODE
-    {
-        "tpope/vim-abolish",
-        event = "VeryLazy",
-    },
-
     -- Adds a view of functions, classes, and other relevant elements within the current buffer.
     -- VISUAL, CODE
     {
         "stevearc/aerial.nvim",
         event = "VeryLazy",
         dependencies = {
-            -- Adds a parser generator tool and an incremental parsing library.
-            -- CODE
             "nvim-treesitter/nvim-treesitter",
-
-            -- Adds web icons support.
-            -- VISUAL
             "nvim-tree/nvim-web-devicons"
         },
         config = function() require("plugins.aerial") end
+    },
+
+    -- Adds markdown files" preview functionality.
+    -- VISUAL, CODE
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        build = "cd app && npm install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
     },
 }

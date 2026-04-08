@@ -26,6 +26,7 @@ indent_blankline.setup({
         buftypes = {
             "terminal",
             "nofile",
+            "quickfix",
         },
     },
 })
