@@ -10,7 +10,7 @@ local function map(mode, mapFrom, mapTo, description, options)
     if options then
         base_options = vim.tbl_extend("force", base_options, options)
     end
-    vim.api.nvim_set_keymap(mode, mapFrom, mapTo, base_options)
+    vim.keymap.set(mode, mapFrom, mapTo, base_options)
 end
 
 return map
