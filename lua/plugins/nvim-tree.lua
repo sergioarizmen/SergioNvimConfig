@@ -12,7 +12,7 @@ end
 
 -- dofile(vim.g.base46_cache .. "nvimtree")
 
--- Call tree setup.
+-- Call setup.
 nvim_tree.setup {
     hijack_cursor = false,
     auto_reload_on_write = true,

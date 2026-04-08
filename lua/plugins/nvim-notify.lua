@@ -1,8 +1,16 @@
+-----------------------------------------------------------
+-- Notify plugin configuration file
+-----------------------------------------------------------
+-- Plugin: nvim-notify
+-- url: https://github.com/rcarriga/nvim-notify
+
+-- Check if the plugin is properly installed.
 local status_ok, notify = pcall(require, "notify")
 if not status_ok then
     return
 end
 
+-- Call setup.
 notify.setup({
     background_colour = "#000000",
     fps = 30,

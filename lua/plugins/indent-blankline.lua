@@ -11,7 +11,7 @@ if not status_ok then
 end
 
 -- Call setup.
-indent_blankline.setup {
+indent_blankline.setup({
     exclude = {
         filetypes = {
             "help",
@@ -28,4 +28,4 @@ indent_blankline.setup {
             "nofile",
         },
     },
-}
+})

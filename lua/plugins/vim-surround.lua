@@ -10,4 +10,5 @@ if not status_ok then
     return
 end
 
+-- Call setup.
 vim_surround.setup()

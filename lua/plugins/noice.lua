@@ -1,8 +1,16 @@
+-----------------------------------------------------------
+-- Noice plugin configuration file
+-----------------------------------------------------------
+-- Plugin: noice.nvim
+-- url: https://github.com/folke/noice.nvim
+
+-- Check if the plugin is properly installed.
 local status_ok, noice = pcall(require, "noice")
 if not status_ok then
     return
 end
 
+-- Call setup.
 noice.setup({
     cmdline = {
         -- Use the "cmdline" view for the command line (at the bottom)
@@ -17,7 +25,7 @@ noice.setup({
             ["cmp.entry.get_documentation"] = true,
         },
     },
-    -- You can enable a preset for easier configuration
+    -- You can enable a preset for easier configuration.
     presets = {
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together

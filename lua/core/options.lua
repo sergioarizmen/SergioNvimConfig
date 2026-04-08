@@ -73,17 +73,17 @@ opt.updatetime = 700    -- ms to wait for trigger an event.
 -- See :help vim.diagnostic.Opts
 diagnostics.config {
     severity_sort = true,
-    float = { border = 'rounded', source = 'if_many' },
+    float = { border = "rounded", source = "if_many" },
     signs = g.have_nerd_font and {
         text = {
-            [diagnostics.severity.ERROR] = '󰅚 ',
-            [diagnostics.severity.WARN] = '󰀪 ',
-            [diagnostics.severity.INFO] = '󰋽 ',
-            [diagnostics.severity.HINT] = '󰌶 ',
+            [diagnostics.severity.ERROR] = "󰅚 ",
+            [diagnostics.severity.WARN] = "󰀪 ",
+            [diagnostics.severity.INFO] = "󰋽 ",
+            [diagnostics.severity.HINT] = "󰌶 ",
         },
     } or {},
     virtual_text = {
-        source = 'if_many',
+        source = "if_many",
         spacing = 2,
         format = function(diagnostic)
             local diagnostic_message = {

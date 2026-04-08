@@ -10,6 +10,7 @@ if not ok then
     return
 end
 
+-- Call setup.
 oil.setup({
     keymaps = {
         ["g?"] = "actions.show_help",
