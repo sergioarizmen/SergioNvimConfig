@@ -10,41 +10,71 @@ if not status_ok then
     return
 end
 
+-- Get vim version.
+local v = vim.version()
+local version = "v" .. v.major .. "." .. v.minor .. "." .. v.patch
+
 -- Call setup.
 snacks.setup({
     bigfile = { enabled = true },
     dashboard = {
-        enabled = false,
+        enabled = true,
         preset = {
             header = [[
-                                              
-       ████ ██████           █████      ██
-      ███████████             █████ 
-      █████████ ███████████████████ ███   ███████████
-     █████████  ███    █████████████ █████ ██████████████
-    █████████ ██████████ █████████ █████ █████ ████ █████
-  ███████████ ███    ███ █████████ █████ █████ ████ █████
- ██████  █████████████████████ ████ █████ █████ ████ ██████
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
             ]],
+            keys = {
+                { icon = " ", key = "e", desc = "New file", action = ":ene | startinsert" },
+                { icon = " ", key = "r", desc = "Recently used files", action = ":lua Snacks.picker.recent()" },
+                { icon = " ", key = "f", desc = "Find file", action = ":lua Snacks.picker.files()" },
+                { icon = " ", key = "g", desc = "Find text", action = ":lua Snacks.picker.grep()" },
+                { icon = " ", key = "s", desc = "Settings", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                { icon = " ", key = "q", desc = "Quit Neovim", action = ":qa" },
+            },
         },
         sections = {
+            -- Left pane.
             { section = "header" },
-            { section = "keys", indent = 1,gap = 1, padding = 1 },
-            { section = "recent_files", icon = " ", title = "Recent Files", cwd = true, indent = 3, padding = 2 },
-            -- { icon = " ", title = "Projects", section = "projects", indent = 3, padding = 2 },
-            { section = "startup" },
-            { pane = 2, padding = 2 },
+            { section = "keys", indent = 1, gap = 1, padding = 1 },
+            { section = "startup", padding = 1 },
+            {
+                padding = 2,
+                align = "center",
+                text = {
+                    { " " .. version, hl = "Special" },
+                },
+            },
+
+            -- Right pane.
+            { pane = 2, padding = 1 },
+            { pane = 2, padding = 1 },
+            { pane = 2, padding = 1 },
+            { pane = 2, padding = 1 },
+            { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+            { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
             {
                 pane = 2,
+                icon = " ",
+                title = "Git Status",
                 section = "terminal",
-                -- cmd = "~/.config/nvim/img/ascii-image-converter ~/.config/nvim/img/CodeOpsHQLogoWithLightBackgraung.jpg -c -b --dither",
-                cmd = "~/.config/nvim/img/ascii-image-converter ~/.config/nvim/img/logo.jpg -c -b --dither",
-                random = 10,
-                indent = 4,
-                height = 30,
-            }
+                enabled = function()
+                    return Snacks.git.get_root() ~= nil
+                end,
+                cmd = "git status --short --branch --renames",
+                height = 5,
+                padding = 1,
+                ttl = 5 * 60,
+                indent = 3,
+            },
+
         },
     },
+
     -- explorer = { enabled = true },
     image = { enabled = true },
     indent = { enabled = true },
@@ -69,6 +99,10 @@ snacks.setup({
 
 -- Get the custom utility map function.
 local map = require("core.utils.map")
+
+-- Dashboard keymap.
+map("n", "<leader>ua", function() Snacks.dashboard.open() end, "[U]I [A] Dashboard")
+map("n", "<C-a>", function() Snacks.dashboard.open() end, "Quick Access Dashboard")
 
 -- Git keymaps.
 map("n", "<leader>gg", function() Snacks.lazygit() end, "[G]it [G]it (Lazygit)")

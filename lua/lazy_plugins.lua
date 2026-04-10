@@ -206,14 +206,6 @@ return {
         config = function() require("plugins.lualine") end
     },
 
-    -- Adds startup display.
-    -- VISUAL, QUICK START
-    {
-        "goolord/alpha-nvim",
-        event = "VimEnter",
-        config = function() require("plugins.alpha-nvim") end
-    },
-
     -- Adds a window to edit files as code.
     -- VISUAL
     {
